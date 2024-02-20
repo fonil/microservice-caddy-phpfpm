@@ -8,7 +8,7 @@
 
 ## Summary
 
-This repository contains a microservice based on **php:8.3.2-fpm-alpine3.19** and **Caddy** running as a single Docker container.
+This repository contains a microservice based on **php:8.3.3-fpm-alpine** and **Caddy** running as a single Docker container.
 
 ### Highlights
 

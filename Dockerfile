@@ -10,7 +10,7 @@ RUN xcaddy build \
 
 # STAGE #########################################################
 
-FROM php:8.3.2-fpm-alpine as base
+FROM php:8.3.3-fpm-alpine as base
 
 RUN apk update && apk add --no-cache \
         caddy \
@@ -31,7 +31,7 @@ CMD ["caddy", "run", "--config", "/etc/caddy/Caddyfile", "--adapter", "caddyfile
 
 # STAGE #########################################################
 
-FROM php:8.3.2-fpm-alpine as build-development-extensions
+FROM php:8.3.3-fpm-alpine as build-development-extensions
 
 RUN curl -sSL https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions -o - | sh -s \
         pcov \
