@@ -1,0 +1,64 @@
+{
+    "authors": [
+        {
+            "name": "Alcides Ramos",
+            "email": "info@alcidesrc.com",
+            "homepage": "https://alcidesrc.com/"
+        }
+    ],
+    "require": {
+        "php": "^8.2"
+    },
+    "require-dev": {
+        "brianium/paratest": "^6.10",
+        "dg/bypass-finals": "^1.4",
+        "infection/infection": "^0.27.2",
+        "nunomaduro/phpinsights": "^2.8",
+        "perftools/php-profiler": "^1.1",
+        "php-parallel-lint/php-console-color": "^1.0",
+        "php-parallel-lint/php-console-highlighter": "^1.0",
+        "php-parallel-lint/php-parallel-lint": "^1.3",
+        "phpstan/phpstan": "^1.10",
+        "phpunit/phpunit": "^9",
+        "slope-it/clock-mock": "^0.4.0",
+        "symfony/var-dumper": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Hooks\\": "tests/Hooks",
+            "UnitTests\\": "tests/Unit",
+            "IntegrationTests\\": "tests/Integration"
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "allow-plugins": {
+            "infection/extension-installer": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    },
+    "scripts": {
+        "phpstan"         : "phpstan analyse --level=9 --memory-limit=1G --ansi ./app ./tests",
+        "phpinsights"     : "phpinsights --fix",
+
+        "paratest"        : "php -d pcov.enabled=1 ./vendor/bin/paratest --passthru-php=\"'-d' 'pcov.enabled=1'\" --coverage-text --coverage-xml=/output/reports/coverage/xml --coverage-html=/output/reports/coverage/html --log-junit=/output/reports/coverage/junit.xml",
+       
+        "test"            : "phpunit --coverage-text --coverage-xml=/output/reports/coverage/xml --coverage-html=/output/reports/coverage/html --log-junit=/output/reports/coverage/junit.xml --coverage-cache=/output/.cache/coverage",
+        "test-unit"       : "phpunit --coverage-text --coverage-xml=/output/reports/coverage/xml --coverage-html=/output/reports/coverage/html --log-junit=/output/reports/coverage/junit.xml --coverage-cache=/output/.cache/coverage --testsuite=\"Unit Tests\"",
+        "test-integration": "phpunit --coverage-text --coverage-xml=/output/reports/coverage/xml --coverage-html=/output/reports/coverage/html --log-junit=/output/reports/coverage/junit.xml --coverage-cache=/output/.cache/coverage --testsuite=\"Integration Tests\"",
+        "test-mutation"   : "infection --configuration=infection.json --coverage=/output/reports/coverage --threads=3 --ansi",
+
+        "linter"          : "parallel-lint -e php -j 10 --colors ./app ./tests",
+        "phpcs"           : "phpcs --standard=PSR12 ./app ./tests",
+        "phpcbf"          : "phpcbf --standard=PSR12 ./app ./tests"
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
