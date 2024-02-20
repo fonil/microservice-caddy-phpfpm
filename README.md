@@ -1,4 +1,4 @@
-[![Integration Tests](https://github.com/fonil/dockerized-php/actions/workflows/integration-tests.yml/badge.svg?branch=main)](https://github.com/fonil/dockerized-php/actions/workflows/integration-tests.yml)
+[![Integration Tests](https://github.com/fonil/microservice-caddy-phpfpm/actions/workflows/integration-tests.yml/badge.svg)](https://github.com/fonil/microservice-caddy-phpfpm/actions/workflows/integration-tests.yml)
 
 # Microservice with Caddy and PHP-FPM
 
