@@ -1,0 +1,30 @@
+{
+	supervisor {
+		php-fpm --nodaemonize {
+			env DEBUG false
+
+			redirect_stdout stdout
+			redirect_stderr stdout
+
+			restart_policy on_failure
+		}
+	}
+}
+
+:80 {
+	respond "Hi!"
+}
+
+demo.localhost {
+	metrics /metrics
+
+	tls internal
+
+	encode zstd gzip
+
+	root * /code/public
+
+	php_fastcgi :9000
+
+	file_server
+}

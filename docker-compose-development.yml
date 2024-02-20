@@ -1,0 +1,29 @@
+version: '3.9'
+
+volumes:
+  caddy_data:
+  caddy_config:
+
+services:
+    app:
+        container_name: app-development
+        build:
+            context: .
+            dockerfile: Dockerfile
+            target: build-development
+        restart: unless-stopped
+        volumes:
+            - ./build/etc/Caddyfile:/etc/caddy/Caddyfile
+            - ./src:/code
+            - ./output:/output
+            - caddy_data:/data
+            - caddy_config:/config
+        ports:
+            - 80:80
+            - 443:443
+            - 443:443/udp
+        healthcheck:
+            test: ["CMD", "wget", "--tries=1", "--spider", "https://demo.localhost/metrics"]
+            interval: 10s
+            timeout: 1s
+            retries: 3
