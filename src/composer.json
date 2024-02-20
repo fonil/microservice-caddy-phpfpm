@@ -1,4 +1,9 @@
 {
+    "name": "fonil/microservice-caddy-phpfpm",
+    "type": "project",
+    "license": "MIT",
+    "description": "A repository containing a microservice based on Caddy & PHP-FPM running on a single Docker container",
+    "keywords": ["skeleton", "caddy", "phpfpm", "cli", "composer", "phpunit", "paratest", "infection", "phpinsights", "phpstan", "phpunit", "pcov", "bypass-finals"],
     "authors": [
         {
             "name": "Alcides Ramos",
@@ -6,6 +11,10 @@
             "homepage": "https://alcidesrc.com/"
         }
     ],
+    "support": {
+        "issues": "https://github.com/fonil/microservice-caddy-phpfpm/issues",
+        "source": "https://github.com/fonil/microservice-caddy-phpfpm"
+    },
     "require": {
         "php": "^8.2"
     },
